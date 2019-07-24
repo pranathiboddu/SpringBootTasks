@@ -32,11 +32,11 @@ public class MusicController {
         return responseEntity;
     }
 
-    @PutMapping(value = "/update") //put mapping for updating tracks
-    public ResponseEntity<?> updateTrack(@RequestBody Music music) {
+    @PutMapping(value = "/update/{trackId}") //put mapping for updating tracks
+    public ResponseEntity<?> updateTrack(@PathVariable int trackId, Music music) {
         ResponseEntity responseEntity;
         try {
-            musicService.saveTrack(music);
+            musicService.updateTrack(music,trackId);
             responseEntity = new ResponseEntity<String>("Successfully updated", HttpStatus.CREATED);
         } catch (Exception ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
@@ -50,7 +50,7 @@ public class MusicController {
     }
 
     @DeleteMapping(value = "/delete/{trackId}") //delete mapping for deleting track by id
-    public ResponseEntity<?> deleteTrack(@RequestBody int trackId) {
+    public ResponseEntity<?> deleteTrack(@PathVariable int trackId) {
         ResponseEntity responseEntity;
         try {
             musicService.deleteTrack(trackId);
@@ -60,6 +60,11 @@ public class MusicController {
         }
         return responseEntity;
 
+    }
+    @GetMapping("/name/{trackName}")
+    public ResponseEntity<List<Music>> getTrackByName(@PathVariable String trackName) {
+        List<Music> music = musicService.getTrackByName(trackName);
+        return new ResponseEntity<List<Music>>(music, HttpStatus.OK);
     }
 
 }

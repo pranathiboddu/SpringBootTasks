@@ -4,6 +4,7 @@ import com.stackroute.muzixapplication.domain.Music;
 import com.stackroute.muzixapplication.repository.MusicRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,15 +42,21 @@ public class MusicServiceImpl implements MusicService
 
     //method to update track by id
     @Override
-    public boolean updateTrack(Music music, int trackId)
-    {
-        Optional<Music> optionalMusic=musicRepository.findById(trackId);
-        if(!optionalMusic.isPresent())
+    public boolean updateTrack(Music music, int trackId) {
+        Optional<Music> optionalMusic = musicRepository.findById(trackId);
+        if (!optionalMusic.isPresent()) {
             return false;
+        } else {
+            music.setTrackId(trackId);
+            musicRepository.save(music);
+            return true;
+        }
+    }
 
-        music.setTrackId(trackId);
-        musicRepository.save(music);
-        return true;
+    @Override
+    public List<Music> getTrackByName(String trackName) {
+        List<Music> musicTrack = musicRepository.findTrackeByName(trackName);
+        return musicTrack;
     }
 
 }
