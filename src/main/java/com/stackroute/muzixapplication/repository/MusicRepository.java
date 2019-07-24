@@ -13,6 +13,6 @@ public interface MusicRepository extends JpaRepository<Music,Integer>
 {
 
     @Query(value = "select c from Music c where c.trackName = ?1")
-    List<Music> findTrackeByName(String trackName);
+    List<Music> findTrackByName(String trackName);
 }
 

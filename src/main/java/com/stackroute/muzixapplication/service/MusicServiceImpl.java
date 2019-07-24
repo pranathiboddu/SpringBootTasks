@@ -1,34 +1,43 @@
 package com.stackroute.muzixapplication.service;
 
 import com.stackroute.muzixapplication.domain.Music;
+import com.stackroute.muzixapplication.exceptions.TrackAlreadyExistsException;
+import com.stackroute.muzixapplication.exceptions.TrackNotFoundException;
 import com.stackroute.muzixapplication.repository.MusicRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MusicServiceImpl implements MusicService
-{
+public class MusicServiceImpl implements MusicService {
     MusicRepository musicRepository;
 
-    public MusicServiceImpl(MusicRepository musicRepository)
-    {
+    public MusicServiceImpl(MusicRepository musicRepository) {
         this.musicRepository = musicRepository;
     }
 
     //method to save track
     @Override
-    public void saveTrack(Music music) {
-         musicRepository.save(music);
+    public Music saveTrack(Music music) throws TrackAlreadyExistsException //handling exceptions
+    {
+        if (musicRepository.existsById(music.getTrackId())) {
+            throw new TrackAlreadyExistsException("track already exists");
+        }
+        Music savedTrack = musicRepository.save(music);
+        if (savedTrack == null) {
+            throw new TrackAlreadyExistsException("track is null");
+        }
+        return savedTrack;
 
     }
 
     //method to delete track
     @Override
-    public  void deleteTrack(int trackId) {
+    public void deleteTrack(int trackId) throws TrackNotFoundException {
+        if (!musicRepository.existsById(trackId)) {
+            throw new TrackNotFoundException("track not found");
+        }
         musicRepository.deleteById(trackId);
 
     }
@@ -52,11 +61,20 @@ public class MusicServiceImpl implements MusicService
             return true;
         }
     }
-
+//method to track music by name
     @Override
-    public List<Music> getTrackByName(String trackName) {
-        List<Music> musicTrack = musicRepository.findTrackeByName(trackName);
-        return musicTrack;
-    }
+    public List<Music> getTrackByName(String trackName) throws TrackNotFoundException
+    {
+        List<Music> optionalMusic = musicRepository.findTrackByName(trackName);
+        if (optionalMusic.isEmpty())  //checking if track exists or not
+        {
+            throw new TrackNotFoundException("track not found");
+        }
+        else
+            {
+            List<Music> musicTrack = musicRepository.findTrackByName(trackName);
+            return musicTrack;
+        }
 
+    }
 }

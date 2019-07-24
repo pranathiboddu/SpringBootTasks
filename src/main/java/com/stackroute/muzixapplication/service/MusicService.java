@@ -1,6 +1,8 @@
 package com.stackroute.muzixapplication.service;
 
 import com.stackroute.muzixapplication.domain.Music;
+import com.stackroute.muzixapplication.exceptions.TrackAlreadyExistsException;
+import com.stackroute.muzixapplication.exceptions.TrackNotFoundException;
 
 import java.util.List;
 
@@ -8,13 +10,13 @@ import java.util.List;
 public interface MusicService {
     //defined different methods
 
-    public void saveTrack(Music music); //method for saving tracks
+    public Music saveTrack(Music music) throws TrackAlreadyExistsException; //method for saving tracks
 
-    public void deleteTrack(int trackId); //method for deleting track
+    public void deleteTrack(int trackId) throws TrackNotFoundException; //method for deleting track
 
     public List<Music> getAllTracks(); //method for getting all tracks
 
     public boolean updateTrack(Music music,int trackId); //method for updating track
 
-    public List<Music> getTrackByName(String trackName);
+    public List<Music> getTrackByName(String trackName) throws TrackNotFoundException;
 }

@@ -1,6 +1,8 @@
 package com.stackroute.muzixapplication.controller;
 
 import com.stackroute.muzixapplication.domain.Music;
+import com.stackroute.muzixapplication.exceptions.TrackAlreadyExistsException;
+import com.stackroute.muzixapplication.exceptions.TrackNotFoundException;
 import com.stackroute.muzixapplication.service.MusicService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,13 @@ public class MusicController {
     //api operation value
     @ApiOperation(value = "Add an track")
     @PostMapping(value = "/save") //post mapping for saving the tracks
-    public ResponseEntity<?> saveTrack(@ApiParam(value = "Track object store in database table", required = true) @Valid @RequestBody Music music) {
+    public ResponseEntity<?> saveTrack(@ApiParam(value = "Track object store in database table", required = true) @Valid @RequestBody Music music)
+    {
         ResponseEntity responseEntity;
         try {
             musicService.saveTrack(music);
             responseEntity = new ResponseEntity<String>("Successfully created", HttpStatus.CREATED);
-        } catch (Exception ex) {
+        } catch (TrackAlreadyExistsException ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
         }
         return responseEntity;
@@ -69,7 +72,7 @@ public class MusicController {
         try {
             musicService.deleteTrack(trackId);
             responseEntity = new ResponseEntity<String>("Succesfully deleted", HttpStatus.NO_CONTENT);
-        } catch (Exception ex) {
+        } catch (TrackNotFoundException ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
         return responseEntity;
@@ -78,9 +81,17 @@ public class MusicController {
 
     @ApiOperation(value = "View a list of available tracks by track name", response = ResponseEntity.class)
     @GetMapping("/name/{trackName}")
-    public ResponseEntity<List<Music>> getTrackByName(@ApiParam(value = "getting track by track name", required = true)@PathVariable String trackName) {
-        List<Music> music = musicService.getTrackByName(trackName);
-        return new ResponseEntity<List<Music>>(music, HttpStatus.OK);
+    public ResponseEntity<?> getTrackByName(@ApiParam(value = "getting track by track name", required = true)@PathVariable String trackName) {
+        ResponseEntity responseEntity;
+        try {
+            musicService.getTrackByName(trackName);
+            responseEntity=new ResponseEntity<List<Music>>(musicService.getAllTracks(),HttpStatus.OK);
+        }
+        catch (TrackNotFoundException ex)
+        {
+           responseEntity= new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+        }
+        return responseEntity;
     }
 
 }
