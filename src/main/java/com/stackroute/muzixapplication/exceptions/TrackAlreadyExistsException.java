@@ -1,7 +1,7 @@
 package com.stackroute.muzixapplication.exceptions;
 
 public class TrackAlreadyExistsException extends Exception{
-    private String message;
+   /* private String message;
     public TrackAlreadyExistsException()
     {
 
@@ -10,6 +10,6 @@ public class TrackAlreadyExistsException extends Exception{
     {
         super(message);
         this.message=message;
-    }
+    }*/
 
 }

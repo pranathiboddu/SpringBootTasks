@@ -13,10 +13,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 //implemented commandlinerunner and extended SpringBootServletInitializer
-public class MuzixapplicationApplication extends SpringBootServletInitializer implements CommandLineRunner
+public class MuzixapplicationApplication
 {
  //implemented methods
-	MusicService musicService;
+	/*MusicService musicService;
 	@Autowired
 	public void setMusicService(MusicService musicService) {
 		this.musicService = musicService;
@@ -24,12 +24,12 @@ public class MuzixapplicationApplication extends SpringBootServletInitializer im
 
 	@Override
 	protected SpringApplicationBuilder configure (SpringApplicationBuilder application) {
-		return application.sources(MuzixapplicationApplication.class);}
+		return application.sources(MuzixapplicationApplication.class);}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(MuzixapplicationApplication.class, args);
 	}
-
+/*
 	//setting values to the music
 	@Override
 	public void run (String...args) throws Exception
@@ -42,7 +42,7 @@ public class MuzixapplicationApplication extends SpringBootServletInitializer im
 			catch (TrackAlreadyExistsException ex) {
 				ex.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 

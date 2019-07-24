@@ -22,11 +22,11 @@ public class MusicServiceImpl implements MusicService {
     public Music saveTrack(Music music) throws TrackAlreadyExistsException //handling exceptions
     {
         if (musicRepository.existsById(music.getTrackId())) {
-            throw new TrackAlreadyExistsException("track already exists");
+            throw new TrackAlreadyExistsException();
         }
         Music savedTrack = musicRepository.save(music);
         if (savedTrack == null) {
-            throw new TrackAlreadyExistsException("track is null");
+            throw new TrackAlreadyExistsException();
         }
         return savedTrack;
 
@@ -36,7 +36,7 @@ public class MusicServiceImpl implements MusicService {
     @Override
     public void deleteTrack(int trackId) throws TrackNotFoundException {
         if (!musicRepository.existsById(trackId)) {
-            throw new TrackNotFoundException("track not found");
+            throw new TrackNotFoundException();
         }
         musicRepository.deleteById(trackId);
 
@@ -68,7 +68,7 @@ public class MusicServiceImpl implements MusicService {
         List<Music> optionalMusic = musicRepository.findTrackByName(trackName);
         if (optionalMusic.isEmpty())  //checking if track exists or not
         {
-            throw new TrackNotFoundException("track not found");
+            throw new TrackNotFoundException();
         }
         else
             {

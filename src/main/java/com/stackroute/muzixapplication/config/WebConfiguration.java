@@ -14,7 +14,7 @@ import org.springframework.context.event.EventListener;
 @Configuration
 public class WebConfiguration {
 
-  MusicService musicService;
+  /*MusicService musicService;
     public WebConfiguration(MusicService musicService)
     {
         this.musicService=musicService;
@@ -30,7 +30,7 @@ public class WebConfiguration {
         catch (TrackAlreadyExistsException ex) {
             ex.printStackTrace();
         }
-    }
+    }*/
     @Bean
     ServletRegistrationBean h2servletRegistration() //for h2 console view
     {
