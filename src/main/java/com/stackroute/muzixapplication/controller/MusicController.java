@@ -61,9 +61,9 @@ public class MusicController {
         return responseEntity;
 
     }
-    @GetMapping("/name/{trackName}")
-    public ResponseEntity<List<Music>> getTrackByName(@PathVariable String trackName) {
-        List<Music> music = musicService.getTrackByName(trackName);
+    @GetMapping(value = "/name/{trackName}") //get mapping for getting track by name
+    public ResponseEntity<List<Music>> findTrackByName(@PathVariable String trackName) {
+        List<Music> music = musicService.findTrackByName(trackName);
         return new ResponseEntity<List<Music>>(music, HttpStatus.OK);
     }
 

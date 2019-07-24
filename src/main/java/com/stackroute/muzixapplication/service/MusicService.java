@@ -16,5 +16,5 @@ public interface MusicService {
 
     public boolean updateTrack(Music music,int trackId); //method for updating track
 
-    public List<Music> getTrackByName(String trackName);
+    public List<Music> findTrackByName(String trackName);
 }
