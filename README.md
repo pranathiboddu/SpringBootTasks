@@ -20,3 +20,9 @@ c)by using Environment
 Environment.html)
 9) Add @Lombok
 (https://drive.google.com/file/d/1QQpEQZbDD9pmW2qrhYsx5N9XYQ5bJ5dM/view)
+
+Springboot task connecting to last.fm and using mysql database 
+
+Mokito Testcases for controller,Repository and Service classes
+
+Springboot task is done by connecting to mongo db database
