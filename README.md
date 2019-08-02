@@ -11,12 +11,21 @@ Back.
 information whenever the application starts. Use both approaches:
 Approach 1: ApplicationListener<ContextRefreshedEvent>
 Approach 2: CommandLineRunner (Find out how it differs from ApplicationRunner)
+
 7.Global exception using Controller advice
+
 8.Remove all hard coded data from the application code to application.properties
 a)by using @Value.
 b)by using @PropertySource
 c)by using Environment
 (https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/
 Environment.html)
+
 9) Add @Lombok
 (https://drive.google.com/file/d/1QQpEQZbDD9pmW2qrhYsx5N9XYQ5bJ5dM/view)
+
+Springboot task connecting to last.fm and using mysql database 
+
+Mokito Testcases for controller,Repository and Service classes
+
+Springboot task is done by connecting to mongo db database
