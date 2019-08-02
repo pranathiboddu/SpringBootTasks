@@ -113,16 +113,6 @@ public class ControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print());
     }
-    /*@Test
-    public void getTrackByNameTest() throws Exception{
-        when(musicService.getTrackByName(music.getTrackName())).thenReturn(list);
-        mockMvc.perform(get("/api/v1/name/melodies")
-                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(music)))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-
-    }
-*/
 
 
 

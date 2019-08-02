@@ -64,7 +64,7 @@ public class MusicController {
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
     @GetMapping(value = "/get") //get mapping for getting all tracks
-    public ResponseEntity<?> getAllTracks(@ApiParam(value = "Track object store in database table", required = true) @Valid @RequestBody Music music) {
+    public ResponseEntity<?> getAllTracks() {
         return new ResponseEntity<List<Music>>(musicService.getAllTracks(), HttpStatus.OK);
     }
 

@@ -1,4 +1,4 @@
-//package com.stackroute.muzixapplication.config;
+/*package com.stackroute.muzixapplication.config;//package com.stackroute.muzixapplication.config;
 
 import com.stackroute.muzixapplication.domain.Music;
 import com.stackroute.muzixapplication.exceptions.TrackAlreadyExistsException;
@@ -10,26 +10,27 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 
-/*@Configuration
-public class WebConfiguration {*/
+@Configuration
+public class WebConfiguration {
 
-//  MusicService musicService;
-//    public WebConfiguration(MusicService musicService)
-//    {
-//        this.musicService=musicService;
-//    }
-//    //using ContextRefreshedEvent
-//    @EventListener
-//    public void seedData(ContextRefreshedEvent contextRefreshedEvent) {
-//        try {
-//            musicService.saveTrack(new Music(1, "chainsmokers", "Excellent"));
-//            musicService.saveTrack(new Music(2, "one direction", "Excellent"));
-//            musicService.saveTrack(new Music(3, "vidyavox", "Excellent"));
-//        }
-//        catch (TrackAlreadyExistsException ex) {
-//            ex.printStackTrace();
-//        }
-//    }
+    MusicService musicService;
+
+    public WebConfiguration(MusicService musicService) {
+        this.musicService = musicService;
+    }
+
+    //using ContextRefreshedEvent
+    @EventListener
+    public void seedData(ContextRefreshedEvent contextRefreshedEvent) {
+        *//*try {
+            musicService.saveTrack(new Music(1, "chainsmokers", "Excellent"));
+            musicService.saveTrack(new Music(2, "one direction", "Excellent"));
+            musicService.saveTrack(new Music(3, "vidyavox", "Excellent"));
+        } catch (TrackAlreadyExistsException ex) {
+            ex.printStackTrace();
+        }*//*
+    }
+}*/
    /* @Bean
     ServletRegistrationBean h2servletRegistration() //for h2 console view
     {
