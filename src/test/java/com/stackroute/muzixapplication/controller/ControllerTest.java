@@ -42,21 +42,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest
 @RunWith(SpringRunner.class)
 public class ControllerTest {
-
+//autowired mockmvc
     @Autowired
     private MockMvc mockMvc;
+    //creating music object
     private Music music = new Music();
-
+//creating mock bean for music service
     @MockBean
     private MusicService musicService;
+    //inject mock for controller class
     @InjectMocks
     private MusicController musicController;
 
+    //initializing list as null
     private List<Music> list = null;
 
     @Before
     public void setUp() {
-
+//adding all the values into list
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(musicController).build();
         music.setTrackId(121);
@@ -65,7 +68,7 @@ public class ControllerTest {
         list = new ArrayList();
         list.add(music);
     }
-
+//testcase for save track
     @Test
     public void saveMusic() throws Exception {
         when(musicService.saveTrack(any())).thenReturn(music);
@@ -76,16 +79,16 @@ public class ControllerTest {
 
 
     }
-
+//testcase for save track failure
     @Test
-    public void saveUserFailure() throws Exception {
+    public void saveTrackFailure() throws Exception {
         when(musicService.saveTrack(any())).thenThrow(TrackAlreadyExistsException.class);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/save")
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(music)))
                 .andExpect(MockMvcResultMatchers.status().isConflict())
                 .andDo(MockMvcResultHandlers.print());
     }
-
+//testcase for get all tracks
     @Test
     public void getAllTracks() throws Exception {
         when(musicService.getAllTracks()).thenReturn(list);
@@ -95,7 +98,7 @@ public class ControllerTest {
                 .andDo(MockMvcResultHandlers.print());
 
     }
-
+//testcase for deleting track
     @Test
     public void deleteTrack() throws Exception{
         when(musicService.deleteTrack(anyInt())).thenReturn(true);
@@ -104,7 +107,7 @@ public class ControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isNoContent())
                 .andDo(MockMvcResultHandlers.print());
     }
-
+//test case for update track
     @Test
     public void updateTrackTest() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/update/121")

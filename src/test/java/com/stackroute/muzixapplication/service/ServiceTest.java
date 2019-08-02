@@ -26,7 +26,7 @@ import static springfox.documentation.builders.RequestHandlerSelectors.any;
 public class ServiceTest {
     Music music;
 
-    //Create a mock for UserRepository
+    //Create a mock for musicRepository
     @Mock
     MusicRepository musicRepository;
 
@@ -63,8 +63,8 @@ public class ServiceTest {
         musicRepository.save(music);
         //stubbing the mock to return specific data
         when(musicRepository.findAll()).thenReturn(list);
-        List<Music> userlist = musicService.getAllTracks();
-        Assert.assertEquals(list, userlist);
+        List<Music> tracklist = musicService.getAllTracks();
+        Assert.assertEquals(list, tracklist);
     }
 
     // Test for saveTrack service method
