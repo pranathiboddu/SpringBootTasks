@@ -6,12 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Entity;
 
 
 //created entity annotation
-@Document(collection = "Music")
-//@Entity
+@Entity
+//createdd document annotation table creation
+//@Document(collection = "Music")
 @Data //annotated as data for getters and setters
 @NoArgsConstructor //annotated as noargsconstructor for default constructor
 @AllArgsConstructor //annotated as allargsconstructor for parameterized constructor with all fields
