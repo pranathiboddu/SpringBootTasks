@@ -28,7 +28,7 @@ public class MusicController {
     }
     //api operation value
     @ApiOperation(value = "Add an track")
-    @PostMapping(value = "/save") //post mapping for saving the tracks
+    @PostMapping(value = "/music") //post mapping for saving the tracks
     public ResponseEntity<?> saveTrack(@ApiParam(value = "Track object store in database table", required = true) @Valid @RequestBody Music music)
     {
         ResponseEntity responseEntity;
@@ -43,7 +43,7 @@ public class MusicController {
 
 
     @ApiOperation(value = "Update a track")
-    @PutMapping(value = "/update/{trackId}") //put mapping for updating tracks
+    @PutMapping(value = "/music/{trackId}") //put mapping for updating tracks
     public ResponseEntity<?> updateTrack(@ApiParam(value = "track Id to update Music object", required = true) @PathVariable int trackId,
                                          @ApiParam(value = "Update music object", required = true) @Valid @RequestBody Music music) {
         ResponseEntity responseEntity;
@@ -63,12 +63,12 @@ public class MusicController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    @GetMapping(value = "/get") //get mapping for getting all tracks
+    @GetMapping(value = "/music") //get mapping for getting all tracks
     public ResponseEntity<?> getAllTracks() {
         return new ResponseEntity<List<Music>>(musicService.getAllTracks(), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete/{trackId}") //delete mapping for deleting track by id
+    @DeleteMapping(value = "/music/{trackId}") //delete mapping for deleting track by id
     public ResponseEntity<?> deleteTrack(@ApiParam(value = "deleting row from table by trackId", required = true) @PathVariable int trackId) {
         ResponseEntity responseEntity;
         try {
@@ -82,7 +82,7 @@ public class MusicController {
     }
 
    /* @ApiOperation(value = "View a list of available tracks by track name", response = ResponseEntity.class)
-    @GetMapping("/name/{trackName}")
+    @GetMapping("/music/{trackName}")
     public ResponseEntity<?> getTrackByName(@ApiParam(value = "getting track by track name", required = true)@PathVariable String trackName) {
         ResponseEntity responseEntity;
         try {
@@ -95,7 +95,7 @@ public class MusicController {
         }
         return responseEntity;
     }*/
-   @GetMapping(value = "/top") //get mapping for getting all tracks
+   @GetMapping(value = "/music/top") //get mapping for getting all tracks
     public ResponseEntity<?> getTopTracks(@RequestBody Music music)
    {
      return new ResponseEntity<String>(musicService.getTopTracks(),HttpStatus.OK);
