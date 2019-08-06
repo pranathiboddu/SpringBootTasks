@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @AllArgsConstructor //annotated as allargsconstructor for parameterized constructor with all fields
 public class Music {
     @Id
-    int trackId; //annotated as id to create id as primary key
-    String trackName; //created trackname and track comments
-    String trackComments;
+    private int trackId; //annotated as id to create id as primary key
+    private String trackName; //created trackname and track comments
+    private String trackComments;
 }
