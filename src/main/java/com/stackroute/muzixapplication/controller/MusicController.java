@@ -20,7 +20,7 @@ public class MusicController {
         this.musicService = musicService;
     }
 
-    @PostMapping(value = "/save") //post mapping for saving the tracks
+    @PostMapping(value = "/music") //post mapping for saving the tracks
     public ResponseEntity<?> saveTrack(@RequestBody Music music) {
         ResponseEntity responseEntity;
         try {
@@ -32,7 +32,7 @@ public class MusicController {
         return responseEntity;
     }
 
-    @PutMapping(value = "/update/{trackId}") //put mapping for updating tracks
+    @PutMapping(value = "/music/{trackId}") //put mapping for updating tracks
     public ResponseEntity<?> updateTrack(@PathVariable int trackId, Music music) {
         ResponseEntity responseEntity;
         try {
@@ -44,12 +44,12 @@ public class MusicController {
         return responseEntity;
     }
 
-    @GetMapping(value = "/get") //get mapping for getting all tracks
+    @GetMapping(value = "/music") //get mapping for getting all tracks
     public ResponseEntity<?> getAllTracks(@RequestBody Music music) {
         return new ResponseEntity<List<Music>>(musicService.getAllTracks(), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete/{trackId}") //delete mapping for deleting track by id
+    @DeleteMapping(value = "/music/{trackId}") //delete mapping for deleting track by id
     public ResponseEntity<?> deleteTrack(@PathVariable int trackId) {
         ResponseEntity responseEntity;
         try {
@@ -61,7 +61,7 @@ public class MusicController {
         return responseEntity;
 
     }
-    @GetMapping(value = "/name/{trackName}") //get mapping for getting track by name
+    @GetMapping(value = "/music/{trackName}") //get mapping for getting track by name
     public ResponseEntity<List<Music>> findTrackByName(@PathVariable String trackName) {
         List<Music> music = musicService.findTrackByName(trackName);
         return new ResponseEntity<List<Music>>(music, HttpStatus.OK);
