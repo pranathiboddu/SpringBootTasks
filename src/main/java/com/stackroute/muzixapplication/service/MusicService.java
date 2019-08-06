@@ -7,7 +7,7 @@ import com.stackroute.muzixapplication.exceptions.TrackNotFoundException;
 import java.util.List;
 
 //created interface
-public interface MusicService {
+interface MusicService {
     //defined different methods
 
     public Music saveTrack(Music music) throws TrackAlreadyExistsException; //method for saving tracks
