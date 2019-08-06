@@ -5,7 +5,7 @@ import com.stackroute.muzixapplication.domain.Music;
 import java.util.List;
 
 //created interface
-public interface MusicService {
+ interface MusicService {
     //defined different methods
 
     public void saveTrack(Music music); //method for saving tracks
