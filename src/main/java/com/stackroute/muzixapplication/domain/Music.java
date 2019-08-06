@@ -22,9 +22,9 @@ import javax.persistence.Entity;
 public class Music {
     @Id
    // @ApiModelProperty(notes = "The database generated track ID")
-    int trackId; //annotated as id to create id as primary key
+   private int trackId; //annotated as id to create id as primary key
    // @ApiModelProperty(notes = "The database generated track Name")
-    String trackName; //created trackname and track comments
+  private String trackName; //created trackname and track comments
   //  @ApiModelProperty(notes = "The database generated track Comments")
-    String trackComments;
+    private String trackComments;
 }
